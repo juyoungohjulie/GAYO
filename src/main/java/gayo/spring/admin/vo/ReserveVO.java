@@ -1,4 +1,4 @@
-package gayo.spring.web.admin.vo;
+package gayo.spring.admin.vo;
 
 public class ReserveVO {
 	private String reserve_No;

@@ -1,4 +1,4 @@
-package gayo.spring.web.admin.vo;
+package gayo.spring.admin.vo;
 
 public class AdminVO {
 	private String admins_Id;
