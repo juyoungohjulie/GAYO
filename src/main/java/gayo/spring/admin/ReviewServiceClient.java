@@ -2,7 +2,8 @@ package gayo.spring.admin;
 
 import java.util.List;
 
-import gayo.spring.admin.vo.TermsVO;
+import gayo.spring.web.admin.vo.TermsVO;
+
 
 public class ReviewServiceClient {
 	public static void main(String[] args) {
