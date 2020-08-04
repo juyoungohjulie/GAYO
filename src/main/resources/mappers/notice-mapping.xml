@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="NoticeDAO">
+
+	<select id="getNotice" parameterType="notice">
+		SELECT * 
+		FROM notice 
+		WHERE notice_No = #{notice_No}
+	</select>
+	
+	<select id="getNoticeList" parameterType="notice" resultMap="noticeResult" >
+		SELECT * FROM notice
+		WHERE notice_No LIKE '%'||#{notice_No}||'%'
+		ORDER BY notice_No DESC
+	</select>
+  
+  	<resultMap id="noticeResult" type="notice">
+		<result column="NOTICE_NO" property="notice_No" />
+		<result column="NOTICE_TITLE" property="notice_Title" />
+		<result column="NOTICE_CONTENT" property="notice_Content" />
+		<result column="NOTICE_REG_DATE" property="notice_Reg_Date" />
+	</resultMap>
+
+  
+	<insert id="insertNotice" parameterType="notice">
+		INSERT INTO notice (notice_No, notice_Title, notice_Content)
+		VALUES((select nvl(max(notice_No), 0)+1 from notice), #{notice_Title}, #{notice_Content})
+	</insert>
+	
+	<update id="updateNotice" parameterType="notice">
+		UPDATE notice
+		SET notice_Title=#{notice_Title},
+		notice_Content=#{notice_Content}
+		WHERE notice_No = #{notice_No}
+	</update>
+
+	<delete id="deleteReview" parameterType="int">
+		DELETE FROM notice WHERE
+		notice_No = #{notice_No}
+	</delete>
+
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="TermsDAO">
+
+	<select id="getTerms" parameterType="terms">
+		SELECT * 
+		FROM terms
+		WHERE terms_No = #{terms_No}
+	</select>
+	
+	<select id="getTermsList" parameterType="terms" resultMap="termsResult">
+		SELECT * FROM terms
+		WHERE terms_No LIKE '%'||#{terms_No}||'%'
+		ORDER BY terms_No DESC
+	</select>
+  
+  	<resultMap id="termsResult" type="terms">
+		<result column="CUSTOMER_ID" property="customer_Id" />
+		<result column="TERMS_NO" property="terms_No" />
+		<result column="TERMS_TITLE" property="terms_Title" />
+		<result column="TERMS_CONTENT" property="terms_Content" />
+		<result column="TERMS_NECESSARY" property="terms_Necessary" />
+	</resultMap>
+	
+	<update id="updateTerms" parameterType="terms">
+	UPDATE terms
+	SET terms_Title=#{terms_Title}, terms_Content=#{terms_Content}
+	WHERE terms_No = #{terms_No}
+	</update>
+
+  
+	<insert id="insertTerms" parameterType="terms">
+		INSERT INTO terms (terms_No, customer_Id, terms_Title, terms_Content,
+		terms_Necessary)
+		VALUES((select nvl(max(terms_No), 0)+1 from terms), #{customer_Id}, #{terms_Title}, #{terms_Content}, #{terms_Necessary})
+	</insert>
+
+	<delete id="deleteTerms" parameterType="terms">
+		DELETE FROM terms WHERE
+		terms_No = #{terms_No}
+	</delete>
+
+</mapper>

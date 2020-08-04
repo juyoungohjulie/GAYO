@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="PetDAO">
+
+	<select id="getPet" parameterType="pet">
+		SELECT * 
+		FROM pet
+		WHERE customer_Id = #{customer_Id}
+	</select>
+	
+	<select id="getPetList" parameterType="pet" resultMap="petResult">
+		SELECT * FROM pet
+		WHERE customer_Id LIKE '%'||#{customer_Id}||'%'
+		ORDER BY customer_Id DESC
+	</select>
+  
+  	<resultMap id="petResult" type="pet">
+		<result column="CUSTOMER_ID" property="customer_Id" />
+		<result column="CUSTOMER_NAME" property="customer_Name" />
+		<result column="CUSTOMER_GENDER" property="customer_Gender" />
+		<result column="CUSTOMER_BIRTH" property="customer_Birth" />
+		<result column="CUSTOMER_PHONE" property="customer_Phone" />
+		<result column="CUSTOMER_EMAIL" property="customer_Email" />
+		<result column="PET_IMG" property="pet_Img" />
+		<result column="PET_AREA" property="pet_Area" />
+		<result column="PET_DETAILS" property="pet_Dtails" />
+			
+	</resultMap>
+	
+	<update id="updatePet" parameterType="pet">
+	UPDATE pet
+	SET pet_Area=#{pet_Area}, pet_Img=#{pet_Img}
+	WHERE customer_Id = #{customer_Id}
+	</update>
+
+  
+	<insert id="insertPet" parameterType="pet">
+		INSERT INTO pet (pet_Img, pet_Area, customer_Id)
+		VALUES(#{pet_Img}, #{pet_Area}, #{customer_Id})
+	</insert>
+
+	<delete id="deleteReview" parameterType="pet">
+		DELETE FROM pet WHERE
+		customer_id = #{customer_id}
+	</delete>
+
+</mapper>

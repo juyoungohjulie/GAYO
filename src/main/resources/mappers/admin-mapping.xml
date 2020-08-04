@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="AdminDAO">
+  
+	<select id="getAdminList" parameterType="admin" resultMap="AdminResult" >
+		SELECT * FROM admin
+		ORDER BY admins_Id DESC
+	</select>
+  
+  	<resultMap id="AdminResult" type="admin">
+		<result column="ADMINS_ID" property="admins_Id" />
+		<result column="ADMINS_PW" property="admins_Pw" />
+		<result column="ADMINS_STATE" property="admins_State" />
+			
+	</resultMap>
+	
+		<select id="getAdmin" parameterType="admin" >
+		SELECT * 
+		FROM admin
+		WHERE admins_Id = #{admins_Id}
+	</select>
+	
+	
+	<update id="updateAdmin" parameterType="admin">
+	UPDATE admin
+	SET admins_Pw=#{admins_Pw}, admins_State=#{admins_State}
+	WHERE admins_Id = #{admins_Id}
+	</update>
+
+  
+	<insert id="insertAdmin" parameterType="admin">
+		INSERT INTO admin (admins_Id, admins_Pw, admins_State)
+		VALUES(#{admins_Id}, #{admins_Pw}, #{admins_State})
+	</insert>
+
+	<delete id="deleteAdmin" parameterType="admin">
+		DELETE FROM admin WHERE
+		admins_id = #{admins_id}
+	</delete>
+
+</mapper>

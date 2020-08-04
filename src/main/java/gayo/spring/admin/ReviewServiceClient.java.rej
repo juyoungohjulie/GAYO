@@ -1,0 +1,9 @@
+diff a/src/main/java/gayo/spring/admin/ReviewServiceClient.java b/src/main/java/gayo/spring/admin/ReviewServiceClient.java	(rejected hunks)
+@@ -2,7 +2,6 @@
+ 
+ import java.util.List;
+ 
+-import gayo.spring.web.admin.vo.TermsVO;
+ import gayo.spring.admin.vo.TermsVO;
+ 
+ public class ReviewServiceClient {

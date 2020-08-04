@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="UserCountDAO">
+  	<select id="getBanner" parameterType="banner">
+		SELECT * 
+		FROM pet
+		WHERE customer_Id = #{customer_Id}
+	</select>
+	
+	<select id="getBannerList" parameterType="banner" resultMap="bannerResult">
+		SELECT * FROM pet
+		WHERE customer_Id LIKE '%'||#{customer_Id}||'%'
+		ORDER BY customer_Id DESC
+	</select>
+  
+  	<resultMap id="bannerResult" type="pet">
+		<result column="BANNER_NO" property="banner_No" />
+		<result column="BANNER_IMG" property="banner_Img" />			
+	</resultMap>
+	
+	<update id="updateBanner" parameterType="banner">
+	UPDATE banner
+	SET banner_Img=#{banner_Img}
+	WHERE banner_No = #{banner_No}
+	</update>
+
+  
+	<insert id="insertBanner" parameterType="banner">
+		INSERT INTO banner (banner_No, banner_Img)
+		VALUES(#{banner_No}, #{banner_Img})
+	</insert>
+
+	<delete id="deleteBanner" parameterType="int">
+		DELETE FROM banner WHERE
+		banner_No = #{banner_No}
+	</delete>
+
+</mapper>

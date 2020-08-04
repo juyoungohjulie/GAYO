@@ -18,6 +18,7 @@
 
 	<dependencies>
 
+
 		<!-- 오라클 드라이버 -->
 		<dependency>
 			<groupId>com.oracle</groupId>
@@ -189,10 +190,11 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
+				<version>3.6.2</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
+					<encoding>UTF-8</encoding>
 					<compilerArgument>-Xlint:all</compilerArgument>
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>
