@@ -6,7 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import gayo.spring.web.admin.vo.TermsVO;
+
+import gayo.spring.admin.vo.TermsVO;
 
 @Repository
 public class classDAOMybatis {
