@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="BannerDAO">
+  	<select id="getBanner" parameterType="banner">
+		SELECT * 
+		FROM banner
+		WHERE banner_No = #{banner_No}
+	</select>
+	
+	<select id="getBannerList" parameterType="banner" resultMap="bannerResult">
+		SELECT * FROM banner
+		WHERE banner_No LIKE '%'||#{banner_No}||'%'
+		ORDER BY banner_No DESC
+	</select>
+  
+  	<resultMap id="bannerResult" type="banner">
+		<result column="BANNER_NO" property="banner_No" />
+		<result column="BANNER_IMG" property="banner_Img" />			
+	</resultMap>
+	
+	<update id="updateBanner" parameterType="banner">
+	UPDATE banner
+	SET banner_Img=#{banner_Img}
+	WHERE banner_No = #{banner_No}
+	</update>
+
+  
+	<insert id="insertBanner" parameterType="banner">
+		INSERT INTO banner (banner_No, banner_Img)
+		VALUES((select nvl(max(banner_No), 0)+1 from banner), #{banner_Img})
+	</insert>
+
+	<delete id="deleteBanner" parameterType="int">
+		DELETE FROM banner WHERE
+		banner_No = #{banner_No}
+	</delete>
+
+</mapper>

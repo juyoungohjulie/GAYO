@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="ReviewDAO">
+
+	<select id="getReview" parameterType="review">
+		SELECT * 
+		FROM review 
+		WHERE customer_id = #{customer_id}
+	</select>
+	
+	<select id="getReviewList" parameterType="review" resultMap="departmentsResult">
+		SELECT * FROM review
+		WHERE customer_id LIKE '%'||#{customer_id}||'%'
+		ORDER BY review_no DESC
+	</select>
+  
+  	<resultMap id="departmentsResult" type="review">
+		<result column="REVIEW_NO" property="review_no" />
+		<result column="CUSTOMER_ID" property="customer_id" />
+		<result column="ADMIN_ID" property="admin_Id"/>
+		<result column="REVIEW_TITLE" property="review_title" />
+		<result column="REVIEW_CONTENT" property="review_content" />
+		<result column="REVIEW_REG_DATE" property="review_reg_date" />
+		<result column="REVIEW_COUNT" property="review_count" />
+		<result column="REVIEW_SCORE" property="review_score" />
+			
+	</resultMap>
+
+  
+	<insert id="insertReview" parameterType="review">
+		INSERT INTO review (review_no, customer_id, review_title, review_content)
+		VALUES((select nvl(max(review_no), 0)+1 from review), #{customer_id}, #{review_title}, #{review_content})
+	</insert>
+	
+	<update id="updateReview" parameterType="review">
+		UPDATE review
+		SET customer_Name=#{customer_Name}, customer_Pw=#{customer_Pw},
+		customer_Email=#{customer_Email}, customer_Phone=#{customer_Phone},
+		customer_PostCode=#{customer_PostCode}, customer_Addr1=#{customer_Addr1},
+		customer_Addr2=#{customer_Addr2}, customer_Birth=#{customer_Birth},
+		customer_Gender=#{customer_Gender}
+		WHERE customer_Id = #{customer_Id}
+	</update>
+
+	<delete id="deleteReview" parameterType="review">
+		DELETE FROM review WHERE
+		customer_id = #{customer_id}
+	</delete>
+	
+	<delete id="deleteReviewAdmin" parameterType="review">
+		DELETE FROM review WHERE
+		admin_Id = #{admin_Id}
+	</delete>
+
+</mapper>
+  

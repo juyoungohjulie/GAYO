@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<properties resource="db.properties" />
+<typeAliases>
+<typeAlias type="gayo.spring.admin.vo.AdminVO" alias="admin"/>
+<typeAlias type="gayo.spring.admin.vo.ReviewVO" alias="review" />
+<typeAlias type="gayo.spring.pet.vo.PetVO" alias="pet" />
+<typeAlias type="gayo.spring.admin.vo.BannerVO" alias="banner"/>
+<typeAlias type="gayo.spring.admin.vo.CustomerVO" alias="customer"/>
+<typeAlias type="gayo.spring.admin.vo.NoticeVO" alias="notice"/>
+<typeAlias type="gayo.spring.admin.vo.PayVO" alias="pay"/>
+<typeAlias type="gayo.spring.admin.vo.QnaVO" alias="qna"/>
+<typeAlias type="gayo.spring.admin.vo.ReserveVO" alias="reserve"/>
+<typeAlias type="gayo.spring.admin.vo.SalesVO" alias="sales"/>
+<typeAlias type="gayo.spring.admin.vo.TermsVO" alias="terms"/>
+<typeAlias type="gayo.spring.admin.vo.UserCountVO" alias="usercount"/>
+
+</typeAliases>
+<environments default="development">
+<environment id="development">
+<transactionManager type="JDBC" />
+<dataSource type="POOLED">
+<property name="driver" value="${jdbc.driverClassName}" />
+<property name="url" value="${jdbc.url}" />
+<property name="username" value="${jdbc.username}" />
+<property name="password" value="${jdbc.password}" />
+</dataSource>
+</environment>
+</environments>
+<mappers>
+<mapper resource="mappers/review-mapping.xml" />
+<mapper resource="mappers/admin-mapping.xml" />
+<mapper resource="mappers/banner-mapping.xml" />
+<mapper resource="mappers/customer-mapping.xml" />
+<mapper resource="mappers/notice-mapping.xml" />
+<mapper resource="mappers/pay-mapping.xml" />
+<mapper resource="mappers/pet-mapping.xml" />
+<mapper resource="mappers/qna-mapping.xml" />
+<mapper resource="mappers/reserve-mapping.xml" />
+<mapper resource="mappers/sales-mapping.xml" />
+<mapper resource="mappers/terms-mapping.xml" />
+<mapper resource="mappers/user_count-mapping.xml" />
+</mappers>
+</configuration>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="PayDAO">
+
+	<select id="getPay" parameterType="pay">
+		SELECT * 
+		FROM pay 
+		WHERE customer_Id = #{customer_Id}
+	</select>
+	
+	<select id="getPayList" parameterType="pay" resultMap="PayResult" >
+		SELECT * FROM pay
+		WHERE customer_Id LIKE '%'||#{customer_Id}||'%'
+		ORDER BY customer_Id DESC
+	</select>
+  
+  	<resultMap id="PayResult" type="pay">
+		<result column="CUSTOMER_ID" property="customer_Id" />
+		<result column="RESERVE_PAY" property="reserve_Pay" />
+		<result column="PAY_DATE" property="pay_Date" />
+	</resultMap>
+
+  
+	<insert id="insertPay" parameterType="pay">
+		INSERT INTO pay (customer_Id, reserve_Pay)
+		VALUES(#{customer_Id}, #{reserve_Pay})
+	</insert>
+	
+	<update id="updatePay" parameterType="pay">
+		UPDATE pay
+		SET reserve_Pay=#{reserve_Pay}
+		WHERE customer_Id = #{customer_Id}
+	</update>
+
+	<delete id="deletePay" parameterType="pay">
+		DELETE FROM pay WHERE
+		customer_Id = #{customer_Id}
+	</delete>
+
+</mapper>

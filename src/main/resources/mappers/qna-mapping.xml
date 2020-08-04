@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="QnaDAO">
+
+	<select id="getQna" parameterType="qna">
+		SELECT * 
+		FROM qna
+		WHERE customer_Id = #{customer_Id}
+	</select>
+	
+	<select id="getQnaList" parameterType="qna" resultMap="qnaResult">
+		SELECT * FROM pet
+		WHERE customer_Id LIKE '%'||#{customer_Id}||'%'
+		ORDER BY customer_Id DESC
+	</select>
+  
+  	<resultMap id="qnaResult" type="qna">
+  		<result column="QNA_NO" property="qna_No"/>
+		<result column="CUSTOMER_ID" property="customer_Id" />
+		<result column="ADMIN_ID" property="admin_Id" />
+		<result column="QNA_TITLE" property="qna_Title" />
+		<result column="QNA_CONTENT" property="qna_Content" />
+		<result column="QNA_REG_DATE" property="qna_Reg_Date" />
+		<result column="QNA_ANSWER_TITLE" property="qna_Answer_Title" />
+		<result column="QNA_ANSWER_CONTENT" property="qna_Answer_Content" />
+		<result column="QNA_ANSWER_DATE" property="qna_Answer_Date" />
+	</resultMap>
+	
+	<update id="updateQnaUser" parameterType="qna">
+	UPDATE qna
+	SET qna_Title=#{qna_Title}, qna_Content=#{qna_Content},
+	WHERE customer_Id = #{customer_Id}
+	</update>
+	
+	<update id="updateQnaAdmin" parameterType="qna">
+	UPDATE qna
+	SET qna_Answer_Title=#{qna_Answer_Title}, qna_Answer_Content=#{qna_Answer_Content},
+	WHERE admin_Id = #{admin_Id}
+	</update>
+
+  
+	<insert id="insertQnaCustomer" parameterType="qna">
+		INSERT INTO qna (qna_No, customer_Id, qna_Title, qna_Content)
+		VALUES((select nvl(max(qna_No), 0)+1 from qna), #{customer_Id}, #{qna_Title}, #{qna_Content})
+	</insert>
+	
+	<insert id="insertQnaAdmin" parameterType="qna">
+		INSERT INTO qna (admin_Id, qna_Answer_Title, qna_Answer_Content)
+		VALUES(#{admin_Id}, #{qna_Answer_Title}, #{qna_Answer_Content})
+	</insert>
+
+	<delete id="deleteQnaCustomer" parameterType="qna">
+		DELETE FROM qna WHERE
+		customer_Id = #{customer_Id}
+	</delete>
+	
+	<delete id="deleteQnaAdmin" parameterType="qna">
+		DELETE FROM qna WHERE
+		admin_Id = #{admin_Id}
+	</delete>
+
+</mapper>
