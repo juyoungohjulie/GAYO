@@ -1,11 +1,11 @@
-package gayo.spring.admin.dao;
+package gayo.spring.web.admin.dao;
 
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
 import gayo.spring.admin.sqlSessionFactoryBean;
-import gayo.spring.admin.vo.AdminVO;
+import gayo.spring.web.admin.vo.AdminVO;
 
 public class AdminDAO {
 	private SqlSession sqlSession;

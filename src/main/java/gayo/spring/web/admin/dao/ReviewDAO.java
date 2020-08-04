@@ -1,11 +1,11 @@
-package gayo.spring.admin.dao;
+package gayo.spring.web.admin.dao;
 
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
 import gayo.spring.admin.sqlSessionFactoryBean;
-import gayo.spring.admin.vo.ReviewVO;
+import gayo.spring.web.admin.vo.ReviewVO;
 
 public class ReviewDAO {
 	private SqlSession sqlSession;

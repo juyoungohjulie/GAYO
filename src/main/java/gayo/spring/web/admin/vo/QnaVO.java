@@ -1,4 +1,4 @@
-package gayo.spring.admin.vo;
+package gayo.spring.web.admin.vo;
 
 import java.sql.Date;
 

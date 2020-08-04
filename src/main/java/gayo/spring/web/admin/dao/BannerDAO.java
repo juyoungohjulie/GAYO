@@ -1,10 +1,10 @@
-package gayo.spring.admin.dao;
+package gayo.spring.web.admin.dao;
 
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import gayo.spring.admin.sqlSessionFactoryBean;
-import gayo.spring.admin.vo.BannerVO;
+import gayo.spring.web.admin.vo.BannerVO;
 
 public class BannerDAO {
 	private SqlSession sqlSession;

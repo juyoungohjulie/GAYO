@@ -1,4 +1,4 @@
-package gayo.spring.admin.dao;
+package gayo.spring.web.admin.dao;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import gayo.spring.admin.sqlSessionFactoryBean;
-import gayo.spring.admin.vo.TermsVO;
+import gayo.spring.web.admin.vo.TermsVO;
 @Repository
 public class TermsDAO {
 	

@@ -1,4 +1,4 @@
-package gayo.spring.admin.vo;
+package gayo.spring.web.admin.vo;
 
 public class UserCountVO {
 	private String customer_Count_Date;
